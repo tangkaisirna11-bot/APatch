@@ -58,8 +58,10 @@ jobs:
         run: |
           rustup default stable
           rustup update stable
-          cargo install cargo-ndk
-          rustup target install aarch64-linux-android
+          cargo install cargo-ndk --locked --force
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+          cargo ndk --version
+          rustup target add aarch64-linux-android
 
       - name: Cache Rust
         uses: Swatinem/rust-cache@v2
